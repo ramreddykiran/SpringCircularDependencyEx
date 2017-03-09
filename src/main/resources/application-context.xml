@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+<!-- 
+   <bean id="parentClass" class="com.spring.services.demo1.ParentClass">
+   <constructor-arg ref="dependentClass"></constructor-arg>
+   </bean>
+   <bean id="dependentClass" class="com.spring.services.demo1.DependentClass">
+   <constructor-arg ref="parentClass"/>
+   </bean
+-->
+    <!-- //it will give circular dependency exception as ParentClass depends on DependentClass and vice-versa-->
+    <bean id="pClass" class="com.spring.services.demo1.ParentClass">
+    <property name="dependentClass" ref ="dClass"/>
+    </bean>
+    
+    <bean id="dClass" class="com.spring.services.demo1.DependentClass">
+    <property name="parentClass" ref ="pClass"/>
+    </bean>
+    
+ 
+		
+</beans>
